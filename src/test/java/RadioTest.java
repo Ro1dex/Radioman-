@@ -11,6 +11,14 @@ public class RadioTest {
         Assertions.assertEquals(exp,act);
     }
     @Test
+    public void shouldSetCustomStation (){
+        Radio radio = new Radio(29);
+        radio.setCurrentStation(29);
+        int exp = 28;
+        int act = radio.getCurrentStation();
+        Assertions.assertEquals(exp,act);
+    }
+    @Test
     public void shouldNotSetStationAboveMax(){
         Radio radio = new Radio();
         radio.setCurrentStation(10);
@@ -69,22 +77,7 @@ public class RadioTest {
         int act = radio.getVolume();
         Assertions.assertEquals(exp,act);
     }
-    @Test
-    public void shouldNotSetVolumeAboveMax (){
-        Radio radio = new Radio();
-        radio.setCurrentVolume(11);
-        int exp = 10;
-        int act = radio.getVolume();
-        Assertions.assertEquals(exp,act);
-    }
-    @Test
-    public void shouldNotSetVolumeLowerMin(){
-        Radio radio= new Radio();
-        radio.setCurrentVolume(-1);
-        int exp = 0;
-        int act = radio.getVolume();
-        Assertions.assertEquals(exp, act);
-    }
+
         @Test
     public void shouldIncreaseVolume(){
         Radio radio = new Radio();
@@ -97,11 +90,27 @@ public class RadioTest {
     @Test
     public void shouldNotIncreaseVolumeOverMax(){
         Radio radio = new Radio();
-        radio.setCurrentVolume(10);
+        radio.setCurrentVolume(100);
         radio.increaseVolume();
-        int exp = 10;
+        int exp = 100;
         int act = radio.getVolume();
         Assertions.assertEquals(exp,act);
+    }
+    @Test
+    public void shouldNotSetVolumeAboveMax (){
+        Radio radio = new Radio();
+        radio.setCurrentVolume(101);
+        int exp = 100;
+        int act = radio.getVolume();
+        Assertions.assertEquals(exp,act);
+    }
+    @Test
+    public void shouldNotSetVolumeLowerMin(){
+        Radio radio= new Radio();
+        radio.setCurrentVolume(-1);
+        int exp = 0;
+        int act = radio.getVolume();
+        Assertions.assertEquals(exp, act);
     }
     @Test
     public void shouldDecreaseVolume(){
