@@ -69,7 +69,23 @@ public class RadioTest {
         int act = radio.getVolume();
         Assertions.assertEquals(exp,act);
     }
-
+    @Test
+    public void shouldNotSetVolumeLowerMin(){
+        Radio radio= new Radio();
+        radio.setCurrentVolume(-1);
+        int exp = 0;
+        int act = radio.getVolume();
+        Assertions.assertEquals(exp, act);
+    }
+    @Test
+    public void shouldDecreaseVolume(){
+        Radio radio = new Radio();
+        radio.setCurrentVolume(5);
+        radio.decreaseVolume();
+        int exp = 4;
+        int act = radio.getVolume();
+        Assertions.assertEquals(exp,act);
+    }
         @Test
     public void shouldIncreaseVolume(){
         Radio radio = new Radio();
